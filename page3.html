@@ -3,106 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Анастасія Похілевич">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Додаткові дані</title>
-    <style media="screen" title="Основні стилі">
-        body { 
-            font-family: Arial, sans-serif; 
-            background:#fbfdff; 
-            color:#222; 
-            margin:20px; 
-            line-height:1.5; 
-        }
-        .highlight { background-color: yellow; }
-        header.main-header h1 {
-            text-align:center; 
-            color:#003366; 
-            margin-bottom:20px;
-        }
-        aside {
-            display:block; 
-            padding:12px; 
-            background:#f8f9fa; 
-            border:1px solid #ccc; 
-            border-radius:6px; 
-            margin:20px 0; 
-            white-space:pre-line; 
-        }
-        img.drink {
-            border-radius:8px; 
-            box-shadow:0 2px 6px rgba(0,0,0,0.1);
-        }
-        a {
-            display:inline-block; 
-            margin-top:10px; 
-            padding:8px 14px; 
-            text-decoration:none; 
-            border-radius:6px;
-        }
-        a[href="index.html"] { background:#003366; color:#fff; }
-        a[href="page2.html"] { background:#006699; color:#fff; }
-    </style>
+    <!-- Посилання на зовнішній файл стилів -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header id="head" class="main-header">
-        <h1>Третя сторінка</h1>
-    </header>
 
-    <section class="info" title="Дані">
-        <div id="container" title="Контейнер" style="margin-bottom:15px;">
-            <span style="color:green; font-weight:bold;">Інформація про постачальників</span>
+    <!-- Огортаючий блок для всієї сторінки -->
+    <div id="page-wrapper" class="page-3">
+        
+        <!-- Абсолютно позиціонований елемент для z-index, clip, position: absolute -->
+        <div id="new-badge">NEW</div>
+
+        <header id="head" class="main-header">
+            <h1>Третя сторінка</h1>
+        </header>
+
+        <!-- Основний контент -->
+        <main class="content-with-sidebar">
+            
+            <!-- Вкладена секція 1 (лівий контент) -->
+            <section class="info" title="Дані">
+                <div id="container" title="Контейнер">
+                    <span>Інформація про постачальників</span>
+                </div>
+
+                <p class="img-container">
+                    <img src="https://imglife.pravda.com.ua/life/images/doc/3/1/43221/31337ef-naykrashi-napoi.jpg?w=1920&q=90" 
+                         hspace="10" vspace="10" width="600" 
+                         class="drink" alt="Зображення напоїв" id="drink-img">
+                </p>
+
+                <map lang="uk" shape="rect" href="#">
+                    <area coords="34,44,270,350" shape="rect" lang="uk" 
+                          onfocus="console.log('focus')" onblur="console.log('blur')">
+                </map>
+
+                <ins cite="https://example.com" title="Додано">
+                    Мінімальна сума замовлення 200 гривень
+                </ins><br>
+
+                <mark datetime="2025-09-06" cite="example.com">
+                    Для нових покупців знижка -20 відсотків!
+                </mark><br>
+
+                <p>
+                    Формули: H<sub id="low">2</sub>O та E=mc<sup lang="uk" class="formula-sup">2</sup><br>
+                </p>
+                
+                <!-- direction: ltr; unicode-bidi: embed; -->
+                <bdo lang="ar" dir="rtl" class="rtl-text">
+                    Кабаноси до кожного замовлення
+                </bdo><br>
+
+                <ruby class="ruby-class">
+                    漢 <rt id="rt1">kan</rt>
+                </ruby>
+
+            </section>
+            
+            <!-- Вкладена секція 2 (бічна панель) -->
+            <aside title="Примітка" class="sidebar">
+                <p>CoolWave Drinks (Польща, Гданськ)</p>
+                <p>Спеціалізація: легкі пивні мікси з цитрусовими.</p>
+                <p>Особливість: технологія «мікро-фільтрації».</p>
+                <p>Термін придатності: 9 місяців.</p>
+                
+                <p>SunnyHops (Литва, Каунас)</p>
+                <p>Спеціалізація: низькоалкогольне пиво.</p>
+                <p>Особливість: співпраця з місцевими фермами.</p>
+                <p>Термін придатності: 6 місяців.</p>
+            </aside>
+            
+        </main>
+        
+        <!-- Демонстрація display: table-* -->
+        <div class="table-demo">
+            <div class="table-col-group">
+                <div class="table-col"></div>
+                <div class="table-col"></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Комірка 1</div>
+                <div class="table-cell">Комірка 2</div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Комірка 3</div>
+                <div class="table-cell">Комірка 4</div>
+            </div>
         </div>
-    </section>
 
-    <aside title="Примітка">
-CoolWave Drinks (Польща, Гданськ)
-Спеціалізація: легкі пивні мікси з цитрусовими.
-Особливість: технологія «мікро-фільтрації», що зберігає природний аромат.
-Термін придатності: 9 місяців.
 
-SunnyHops (Литва, Каунас)
-Спеціалізація: низькоалкогольне пиво з додаванням трав та спецій.
-Особливість: співпраця з місцевими фермами для забезпечення органічної сировини.
-Термін придатності: 6 місяців.
-
-BerryFresh Beverages (Україна, Київ)
-Спеціалізація: ягідні слабоалкогольні напої у банках.
-Особливість: оригінальні смаки (чорниця-лаванда, малина-імбир).
-Термін придатності: 10 місяців.
-    </aside>
-
-    <p style="text-align:center;">
-        <img src="https://imglife.pravda.com.ua/life/images/doc/3/1/43221/31337ef-naykrashi-napoi.jpg?w=1920&q=90" 
-             hspace="10" vspace="10" width="600" 
-             class="drink" alt="Зображення" id="drink-img">
-    </p>
-
-    <map lang="uk" shape="rect" href="#" onfocus="alert('Фокус на карті!')">
-        <area coords="34,44,270,350" shape="rect" lang="uk" 
-              onfocus="console.log('focus')" onblur="console.log('blur')">
-    </map>
-
-    <ins style="color:blue; font-weight:bold;" cite="https://example.com" title="Додано">
-        Мінімальна сума замовлення 200 гривень
-    </ins><br>
-
-    <mark style="background:#fffa8b; padding:2px 4px; border-radius:4px;" 
-          datetime="2025-09-06" cite="example.com">
-        Для нових покупців знижка -20 відсотків!
-    </mark><br>
-
-    Формули: H<sub id="low" style="color:red; font-weight:bold;">2</sub>O та E=mc<sup lang="uk">2</sup><br>
-
-    <bdo lang="ar" style="display:inline-block; margin-top:8px; font-style:italic; color:#444;">
-        Кабаноси до кожного замовлення
-    </bdo><br>
-
-    <ruby style="font-size:20px; display:inline-block; margin-top:10px;" class="ruby-class">
-        漢 <rt id="rt1" style="color:blue;">kan</rt>
-    </ruby>
-
-    <br><br>
-
-    <a href="index.html">Назад на головну</a> 
-    <a href="page2.html">На другу сторінку</a>
+        <!-- Секція підвалу -->
+        <footer>
+            <a href="index.html" class="nav-link" title="На головну">Назад на головну</a> 
+            <a href="page2.html" class="nav-link" title="На сторінку 2">На другу сторінку</a>
+        </footer>
+        
+    </div> <!-- кінець #page-wrapper -->
 </body>
 </html>

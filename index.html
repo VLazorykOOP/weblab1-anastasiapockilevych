@@ -3,43 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Анастасія Похілевич">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Слабоалкогольні напої</title>
+    <!-- Посилання на зовнішній файл стилів -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family:Arial, sans-serif; background:#f9f9ff; color:#222; margin:20px;">
+<body>
 
-    <h1 id="main-title" title="Головна сторінка" lang="uk" 
-        style="text-align:center; color:#003366; margin-bottom:15px;">
-        Виробництво слабоалкогольних напоїв
-    </h1>
+    <!-- Огортаючий блок для всієї сторінки -->
+    <div id="page-wrapper">
 
-    <h2 align="center" style="color:darkblue; margin-top:30px; margin-bottom:10px;" title="Розділ">
-        Види та марки
-    </h2>
+        <!-- Секція заголовка -->
+        <header>
+            <h1 id="main-title" title="Головна сторінка" lang="uk">
+                Виробництво слабоалкогольних напоїв
+            </h1>
+        </header>
 
-    <h3 align="left" style="font-style:italic; color:#444; margin-left:15px;" title="Марки">
-        Somersby, BeerMix, Apps, Garage, Чернігівське, Львівське
-    </h3>
+        <!-- Основний контент сторінки -->
+        <main>
+            <!-- Вкладена секція 1 -->
+            <section id="content-main">
+                <h2 align="center" title="Розділ">
+                    Види та марки
+                </h2>
 
-    <p style="text-align:justify; line-height:1.6; margin:15px 10px;" dir="ltr" align="left">
-        Тут буде опис продукції. 
-        <b style="color:#cc0000; background:#ffe6e6; padding:2px 4px; border-radius:4px;" title="Виділений текст">
-            Вживання тільки з 18-ти років • небезпечно для вагітних
-        </b>. 
-        <s dir="ltr" class="crossed" style="color:gray;">
-            Але всі все одно будуть вживати до 18
-        </s> 
-        <tt id="old-font" title="Моноширинний текст" lang="uk" style="color:#003366;">
-            Тільки якісні слабоалкогольні напої!
-        </tt>.
-    </p>
+                <!-- display: run-in може не працювати у сучасних браузерах, але вимагається -->
+                <h3 align="left" title="Марки" class="run-in-header">
+                    Somersby, BeerMix, Apps, Garage, Чернігівське, Львівське
+                </h3>
 
-    <br clear="all" style="margin:10px;" title="Розрив рядка">
-    <hr noshade color="blue" style="height:2px; border:none; margin:20px 0;">
+                <p dir="ltr" align="left" class="content-paragraph">
+                    Тут буде опис продукції.
+                    <!-- Блок з попередженням -->
+                    <span class="warning-block">
+                        <b title="Виділений текст" class="important-warning">
+                            Вживання тільки з 18-ти років • небезпечно для вагітних
+                        </b>
+                    </span>.
+                    <s dir="ltr" class="crossed" title="Закреслено">
+                        Але всі все одно будуть вживати до 18
+                    </s>
+                    <tt id="old-font" title="Моноширинний текст" lang="uk">
+                        Тільки якісні слабоалкогольні напої!
+                    </tt>
+                </p>
+            </section>
+            
+            <!-- Вкладена секція 2 -->
+            <section id="additional-info">
+                 <p>Додатковий параграф для демонстрації селекторів.</p>
+                 <span id="hidden-element" title="Цей елемент приховано">Прихований текст</span>
+            </section>
+        </main>
+        
+        <br clear="all" class="line-break">
+        <hr noshade color="blue" class="divider">
 
-    <a href="page2.html" style="display:inline-block; margin-top:10px; padding:8px 15px; 
-       background:#003366; color:#fff; text-decoration:none; border-radius:6px;">
-        Перейти на другу сторінку
-    </a>
+        <!-- Секція підвалу -->
+        <footer>
+            <a href="page2.html" class="nav-link" title="Перейти на сторінку 2">
+                Перейти на другу сторінку
+            </a>
+            <a href="https://google.com" class="nav-link" target="_blank" title="Зовнішнє посилання">
+                Зовнішнє посилання
+            </a>
+        </footer>
+
+    </div> <!-- кінець #page-wrapper -->
 
 </body>
 </html>
