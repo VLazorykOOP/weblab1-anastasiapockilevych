@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Анастасія Похілевич">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню Проекту</title>
+    
+    <!-- 
+        Застосовано: 
+        <link>: dir="ltr", rel="stylesheet", id="main-stylesheet", title="Main Styles", type="text/css"
+        (Вимога: dir, rel, id, title, type)
+    -->
+    <link rel="stylesheet" href="style.css" id="main-stylesheet" title="Main Styles" type="text/css" dir="ltr">
+</head>
+<body>
+
+    <!-- Огортаючий блок для всієї сторінки -->
+    <div id="page-wrapper" class="menu-container">
+
+        <!-- 
+            Застосовано: 
+            Тег (div) з id
+            (Вимога: id)
+        -->
+        <header id="menu-header">
+            <h1 id="navigation-top">Головне Меню</h1>
+            <p>Навігація по сайту</p>
+        </header>
+
+        <!-- 
+            Застосовано: 
+            <marquee>: truespeed, loop="-1" (безкінечно), scrolldelay="100", vspace="10"
+            (Вимога: truespeed, loop, scrolldelay, vspace)
+        -->
+        <marquee truespeed loop="-1" scrolldelay="100" vspace="10" class="promo-marquee">
+            Ласкаво просимо на наш сайт! Найкращі напої тільки у нас!
+        </marquee>
+
+        <!-- 
+            Застосовано: 
+            Тег (nav) з class
+            (Вимога: class)
+        -->
+        <nav class="menu-nav">
+            <ul>
+                <!-- 
+                    Застосовано: 
+                    <a>: target="_self", class="menu-link", title="Головна сторінка", href="index.html", dir="ltr", accesskey="H", lang="uk"
+                    (Вимога: target, class, title, href, dir, accesskey, lang)
+                -->
+                <li>
+                    <a href="index.html" class="menu-link" title="Головна сторінка" target="_self" dir="ltr" accesskey="H" lang="uk">
+                        Головна (Accesskey H)
+                    </a>
+                </li>
+                
+                <!-- 
+                    Застосовано: 
+                    <a>: type="text/html", id="link-to-page2", class="menu-link"
+                    (Вимога: type, id, class)
+                -->
+                <li>
+                    <a href="page2.html" type="text/html" id="link-to-page2" class="menu-link">
+                        Сторінка 2 (Деталі)
+                    </a>
+                </li>
+                <li>
+                    <a href="page3.html" class="menu-link" id="link-to-page3">
+                        Сторінка 3 (Додатково)
+                    </a>
+                </li>
+                <li>
+                    <a href="page4.html" class="menu-link" id="link-to-page4">
+                        Сторінка 4 (Списки)
+                    </a>
+                </li>
+                <li>
+                    <a href="#navigation-top" class="menu-link internal-link" id="link-to-top">
+                        Наверх (Внутрішнє посилання)
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- 
+            Застосовано: 
+            Тег (footer) з class
+            (Вимога: class)
+        -->
+        <footer class="menu-footer">
+            <p>© 2025 FrostBrew. Всі права захищено.</p>
+        </footer>
+
+    </div> <!-- кінець #page-wrapper -->
+
+</body>
+</html>
