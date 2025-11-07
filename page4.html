@@ -5,41 +5,27 @@
     <meta name="author" content="Анастасія Похілевич">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Інформація про компанію (Списки)</title>
-    <!-- Посилання на зовнішній файл стилів -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Огортаючий блок для всієї сторінки -->
     <div id="page-wrapper">
 
-        <!-- Секція заголовка -->
+
         <header>
             <h1 id="main-title" title="Сторінка зі списками">Інформація про компанію "FrostBrew"</h1>
         </header>
 
-        <!-- Основний контент сторінки -->
         <main>
             <section id="lists-section">
                 <h2>Наші переваги (Нумерований список)</h2>
-                
-                <!-- 
-                    Застосовано: 
-                    <ol>: class="compact-list" (імітує 'compact'), start="5", id="main-list"
-                    <li>: value="10", class="list-item"
-                    (Вимоги: class, start, id, value, compact)
-                -->
+          
                 <ol class="compact-list" start="5" id="main-list">
                     <li>Висока якість сировини</li>
                     <li value="10" class="list-item">Сучасне обладнання</li>
                     <li>Унікальні рецептури</li>
                     
-                    <!-- 
-                        Вкладений список для демонстрації
-                        Застосовано: 
-                        <ol>: type="A", id="process-list", class="alpha-list"
-                        (Вимога: type, id, class)
-                    -->
+                
                     <li>Етапи контролю якості:
                         <ol type="A" id="process-list" class="alpha-list">
                             <li>Перевірка сировини</li>
@@ -50,11 +36,7 @@
                 </ol>
 
                 <h2>Наша продукція (Маркований список)</h2>
-                <!-- 
-                    Застосовано: 
-                    <ul>: title="Список продукції", type="square" (замість 'value=square'), class="bullet-list", id="products", lang="uk"
-                    (Вимоги: title, value=square, class, id, lang)
-                -->
+              
                 <ul title="Список продукції" type="square" class="bullet-list" id="products" lang="uk">
                     <li>Somersby (Яблучний, Грушевий)</li>
                     <li>BeerMix (Лимон, Малина)</li>
@@ -63,35 +45,18 @@
                 </ul>
 
                 <h2>Ключові поняття (Список визначень)</h2>
-                <!-- 
-                    Застосовано: 
-                    <dl>: dir="ltr", class="definition-list", id="company-definitions"
-                    (Вимога: dir, class, id)
-                -->
+             
                 <dl dir="ltr" class="definition-list" id="company-definitions">
-                    <!-- 
-                        Застосовано: 
-                        <dt>: title="Термін 1", id="term-1"
-                        (Вимога: title, id)
-                    -->
+                 
                     <dt id="term-1" title="Термін 1">FrostBrew</dt>
-                    <!-- 
-                        Застосовано: 
-                        <dd>: title="Визначення 1", id="def-1"
-                        (Вимога: title, id)
-                    -->
+                  
                     <dd id="def-1" title="Визначення 1">Назва нашої вигаданої компанії, що спеціалізується на інноваційних слабоалкогольних напоях.</dd>
                     
                     <dt id="term-2" title="Термін 2">Крафтове виробництво</dt>
                     <dd id="def-2" title="Визначення 2">Процес створення напоїв малими партіями з особливою увагою до деталей та якості інгредієнтів.</dd>
                 </ol>
                 
-                <!-- 
-                    Застосовано: 
-                    <ol>: class="ordered-list-2", start="3"
-                    <li>: value="7", class="list-item-special"
-                    (Вимога: class, value, start)
-                -->
+              
                 <h2>Додатковий список</h2>
                 <ol class="ordered-list-2" start="3">
                     <li>Пункт 3</li>
@@ -101,8 +66,7 @@
 
             </section>
         </main>
-        
-        <!-- Секція підвалу -->
+    
         <footer>
             <a href="index.html" class="nav-link" title="На головну">На головну</a>
             <a href="page2.html" class="nav-link" title="На сторінку 2">На сторінку 2</a>
