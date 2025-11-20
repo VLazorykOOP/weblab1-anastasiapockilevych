@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Анастасія Похілевич">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Варіант №14 - Аналіз Партій</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="page-wrapper">
+        
+        <header>
+            <h1 id="main-title">Звітність: Варіант №14</h1>
+        </header>
+
+        <main>
+            <div class="table-container">
+                <h3>Аналіз партій напоїв "FrostBrew" (Фінальна версія)</h3>
+                
+                <!-- Таблиця з твого коду, заповнена даними -->
+                <table class="final-table">
+                    <colgroup>
+                        <col class="col-1"><col class="col-2"><col class="col-3">
+                        <col class="col-4"><col class="col-5"><col class="col-6">
+                        <col class="col-7"><col class="col-8"><col class="col-9">
+                    </colgroup>
+
+                    <!-- HEADER SECTION -->
+                    <tr class="row-header-1">
+                        <td rowspan="3" class="highlight">ID</td>
+                        <td rowspan="3" class="highlight">Тип</td>
+                        <td rowspan="3" class="highlight">Назва продукту</td>
+                        <td colspan="3" class="highlight">Хімічні показники</td>
+                        <td rowspan="2" class="highlight">Статус</td> 
+                        <td colspan="2" class="highlight">Логістика</td> 
+                    </tr>
+
+                    <tr class="row-header-2">
+                        <td colspan="3">Лабораторний аналіз</td>
+                        <td>Склад</td> 
+                        <td>Дата</td> 
+                    </tr>
+
+                    <tr class="row-header-3">
+                        <td>Цук.</td>
+                        <td colspan="2">Кислотність</td>
+                        
+                        <!-- Перевірка rowspan/colspan структури -->
+                        <td rowspan="3">Норма</td> <td rowspan="3">Експорт</td> <td>01.10</td> 
+                    </tr>
+
+                    <!-- DATA SECTION -->
+                    <tr>
+                        <td>1</td><td>A</td><td>Somersby Apple</td>
+                        <td>5%</td><td colspan="2">pH 3.5</td>
+                        <td>OK</td> 
+                    </tr>
+
+                    <tr>
+                        <td>2</td><td>A</td><td>Somersby Pear</td>
+                        <td colspan="2">pH 3.8</td><td>6%</td>
+                        <td>OK</td> 
+                    </tr>
+
+                    <tr>
+                        <td>3</td><td>B</td><td>BeerMix Lemon</td>
+                        <td>4%</td><td colspan="2">pH 4.1</td>
+                        <td rowspan="2">Тест</td> <td rowspan="2">Локал</td> <td>02.10</td> 
+                    </tr>
+                    <tr>
+                        <td>4</td><td>B</td><td>BeerMix Cherry</td>
+                        <td colspan="2">pH 4.0</td><td>4.5%</td>
+                        <td>Wait</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td><td>C</td><td>Garage Lemon</td>
+                        <td>7%</td><td colspan="2">pH 3.2</td>
+                        <td rowspan="2">Брак</td> <td rowspan="2">-----</td> <td>03.10</td>
+                    </tr>
+                    <tr>
+                        <td>6</td><td>C</td><td>Garage Hard</td>
+                        <td colspan="2">pH 3.1</td><td>7.5%</td>
+                        <td>Stop</td>
+                    </tr>
+
+                    <tr>
+                        <td>7</td><td>D</td><td>Apps Cider</td>
+                        <td>3%</td><td colspan="2">pH 3.9</td>
+                        <td rowspan="2">Норма</td> <td rowspan="2">ЄС</td> <td>04.10</td>
+                    </tr>
+                    <tr>
+                        <td>8</td><td>D</td><td>Apps Berry</td>
+                        <td colspan="2">pH 3.8</td><td>3.5%</td>
+                        <td>OK</td>
+                    </tr>
+
+                    <tr>
+                        <td>9</td><td>E</td><td>Non-Alc 0%</td>
+                        <td>8%</td><td colspan="2">pH 4.5</td>
+                        <td rowspan="2">В обробці</td> <td rowspan="2">UA</td> <td>05.10</td>
+                    </tr>
+                    <tr>
+                        <td>10</td><td>E</td><td>Low-Cal</td>
+                        <td colspan="2">pH 4.4</td><td>1.2%</td>
+                        <td>Check</td>
+                    </tr>
+
+                    <tr>
+                        <td>11</td><td>F</td><td>Hoegaarden</td>
+                        <td>2%</td><td colspan="2">pH 4.8</td>
+                        <td rowspan="2">Готово</td> <td rowspan="2">США</td> <td>06.10</td>
+                    </tr>
+                    <tr>
+                        <td>12</td><td>F</td><td>Corona Extra</td>
+                        <td colspan="2">pH 4.7</td><td>2.1%</td>
+                        <td>Send</td>
+                    </tr>
+
+                    <tr>
+                        <td>13</td><td>G</td><td>Desperados</td>
+                        <td>6%</td><td colspan="2">pH 3.6</td>
+                        <td rowspan="2">Норма</td> <td rowspan="2">Азія</td> <td>07.10</td>
+                    </tr>
+                    <tr>
+                        <td>14</td><td>G</td><td>Redds</td>
+                        <td colspan="2">pH 3.7</td><td>6.2%</td>
+                        <td>OK</td>
+                    </tr>
+
+                    <tr>
+                        <td>15</td><td>H</td><td>Zibert Mix</td>
+                        <td>5%</td><td colspan="2">pH 4.2</td>
+                        <td>X</td> <td>X</td> <td>X</td> 
+                    </tr>
+
+                    <tr>
+                        <td>16</td><td>H</td><td>Lvivske Lemon</td>
+                        <td>4%</td><td>4.1</td><td>OK</td> <td>V</td> <td>V</td> <td>V</td> 
+                    </tr>
+
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            <a href="menu.html" class="nav-link" title="Меню">Меню</a>
+            <a href="index.html" class="nav-link">Головна</a>
+            <a href="page2.html" class="nav-link">Стор 2</a>
+            <a href="page3.html" class="nav-link">Стор 3</a>
+            <a href="page4.html" class="nav-link">Стор 4</a>
+            <a href="page5.html" class="nav-link">Стор 5</a>
+            <a href="page6.html" class="nav-link">Стор 6</a>
+        </footer>
+
+    </div>
+
+</body>
+</html>
