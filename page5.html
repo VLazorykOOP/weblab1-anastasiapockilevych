@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Анастасія Похілевич">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета Партнера</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="page-wrapper">
+        <header>
+            <h1 id="main-title">Стати партнером FrostBrew</h1>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <h2 style="font-family: 'Gill Sans', sans-serif; font-variant: small-caps;">Форма реєстрації</h2>
+                
+                <form id="partner-form" accept-charset="UTF-8" style="border: 1px solid #e0e6ec; padding: 20px;" class="main-form" name="partnerForm" action="https://httpbin.org/post" method="post">
+                    
+                    <!-- Група 1: Контакти -->
+                    <fieldset style="margin-bottom: 15px;">
+                        <legend style="color: #003366; font-weight: bold;" title="Основна інформація" id="legend-contact">Контактні дані</legend>
+
+                        <label for="phone" lang="uk" dir="ltr" title="Введіть телефон">Телефон:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+380..." class="input-fantasy">
+                        <br><br>
+
+                        <label for="website">Веб-сайт:</label>
+                        <input type="url" id="website" name="website" formtarget="_blank">
+                        <br><br>
+
+                        <label for="city">Місто (Datalist):</label>
+                        <input list="cities" name="city" id="city">
+                        <datalist id="cities" lang="uk" dir="ltr" title="Список міст">
+                            <option value="Чернівці">
+                            <option value="Київ">
+                            <option value="Львів">
+                            <option value="Одеса">
+                        </datalist>
+                    </fieldset>
+
+                    <!-- Група 2: Замовлення -->
+                    <fieldset>
+                        <legend>Деталі замовлення</legend>
+
+                        <label for="order-date">Дата і час:</label>
+                        <input type="datetime-local" id="order-date" name="order_date">
+                        <br><br>
+
+                        <label for="production-month">Місяць виробництва:</label>
+                        <input type="month" id="production-month" name="prod_month">
+                        <br><br>
+
+                        <label for="quantity">Кількість партій:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="100" dir="ltr" title="Максимум 100" oninput="result.value=parseInt(quantity.value)*500">
+                        <br><br>
+
+                        <label>Оберіть напої:</label>
+                        <select name="drinks" id="drinks-select" required class="select-style" multiple dir="ltr">
+                            <optgroup label="Алкогольні" id="opt-alc" style="color: darkred;">
+                                <option value="somersby">Somersby</option>
+                                <option value="garage">Garage</option>
+                            </optgroup>
+                            <optgroup label="Безалкогольні" id="opt-nonalc" style="color: green;">
+                                <option value="water">Вода</option>
+                                <option value="juice" disabled>Сік (немає в наявності)</option>
+                            </optgroup>
+                        </select>
+                    </fieldset>
+
+                    <!-- Група 3: Файли та інше -->
+                    <fieldset>
+                        <legend>Додатково</legend>
+
+                        <label>Завантажити ліцензію:</label>
+                        <input type="file" name="license" accept=".pdf,.jpg">
+                        <br><br>
+
+                        <label>Зображення-кнопка:</label>
+                        <input type="image" src="https://cdn-icons-png.flaticon.com/512/106/106841.png" alt="Submit Icon" height="30" style="vertical-align: middle;">
+                        <br><br>
+
+                        <label>Рівень заповнення складу:</label>
+                        <meter id="stock" value="0.6" min="0" max="1" low="0.3" optimum="0.8" style="width:100px;" class="meter-style"></meter>
+                        <br><br>
+
+                        <label>Попередня вартість:</label>
+                        <output name="result" for="quantity" dir="ltr" style="font-weight: bold;" lang="uk">0</output> грн.
+                        <br><br>
+                        
+                        <label>Шифрування (Keygen):</label>
+                        <keygen name="security" id="keygen-id" title="Ключ безпеки" keytype="rsa">
+                    </fieldset>
+
+                    <div style="margin-top: 20px;">
+                        <button type="submit" formmethod="post" formenctype="multipart/form-data" value="send" formtarget="_self" class="btn-submit">
+                            Відправити (Button)
+                        </button>
+                        <input type="submit" value="Швидка відправка" formnovalidate class="btn-fast">
+                        <input type="reset" value="Очистити" class="btn-reset">
+                    </div>
+
+                </form>
+
+                <div style="margin-top: 20px;">
+                    <label for="comments">Коментарі:</label><br>
+                    <textarea id="comments" name="comments" form="partner-form" rows="5" cols="50" dirname="comments.dir" placeholder="Напишіть тут..." class="fantasy-text"></textarea>
+                </div>
+
+            </section>
+        </main>
+
+        <footer>
+            <a href="menu.html" class="nav-link">Меню</a>
+            <a href="index.html" class="nav-link">Головна</a>
+            <a href="page2.html" class="nav-link">Стор 2</a>
+            <a href="page3.html" class="nav-link">Стор 3</a>
+            <a href="page4.html" class="nav-link">Стор 4</a>
+            <a href="page5.html" class="nav-link" style="border: 2px solid #004a99;">Стор 5 (Форма)</a>
+            <a href="page6.html" class="nav-link">Стор 6 (Таблиця)</a>
+        </footer>
+    </div>
+
+</body>
+</html>

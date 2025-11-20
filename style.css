@@ -36,6 +36,8 @@ body {
     border-color: #e0e6ec; 
     padding-bottom: 10px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    word-spacing: 10px; /* Вимога */
+    text-indent: 5%; /* Вимога */
 }
 
 .content-paragraph {
@@ -54,6 +56,9 @@ h2 {
     color: #003366;
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 5px;
+    text-align: right; /* Вимога */
+    text-shadow: 2px 2px 4px #aaa; /* Вимога */
+    letter-spacing: 2px; /* Вимога */
 }
 
 h2::first-letter {
@@ -126,7 +131,7 @@ a.nav-link {
     text-decoration: none;
     border-radius: 8px; 
     background-color: #004a99; 
-    color: #ffffff;
+    color: white;
     transition: all 0.2s ease-in-out; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -380,9 +385,7 @@ mark[datetime] {
     clear: none; 
 }
 
-/* --- ДОДАНІ СТИЛІ --- */
-
-/* Сторінка 4 (Списки) */
+/* --- Специфічні стилі для Page 4 (Списки) --- */
 .definition-list {
     margin-top: 20px;
     background: #fdfdfd;
@@ -409,7 +412,7 @@ mark[datetime] {
     list-style-type: square;
 }
 
-/* Меню */
+/* --- Меню --- */
 .menu-container {
     text-align: center;
 }
@@ -456,7 +459,7 @@ mark[datetime] {
     color: #888;
 }
 
-/* Таблиці (Page 5 & 6) */
+/* --- Таблиці (Page 5, 6) --- */
 table {
     width: 100%;
     border-collapse: collapse; 
@@ -490,7 +493,7 @@ caption {
     font-weight: 600;
 }
 
-/* Таблиця Варіант 14 */
+/* Фінальна таблиця (Page 6) */
 .table-container {
     width: 100%;
     max-width: 100%;
@@ -529,3 +532,87 @@ table.final-table td {
 .row-header-2 { height: 35px; background-color: #f0f6ff; font-weight: bold; }
 .row-header-3 { height: 25px; background-color: #f9fbff; font-style: italic;}
 .highlight { color: #003366; }
+
+/* ----------------------------------------------------------------
+   ЕТАП 5: СПЕЦИФІЧНІ СТИЛІ (ШРИФТИ, ТЕКСТ, ПРИСТРОЇ, ЗВУК) - Page 5 (Форми)
+   ---------------------------------------------------------------- */
+
+/* Шрифти */
+.input-fantasy {
+    font-family: fantasy; 
+    font-weight: 200; 
+}
+.fantasy-text {
+    font-family: 'Cambria', 'Times', 'Times New Roman', serif; 
+    font-style: normal; 
+    font-variant: small-caps; 
+}
+.select-style {
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; 
+    font-stretch: condensed; 
+}
+
+/* Додаткові стилі тексту */
+.meter-style {
+    font-stretch: extra-condensed; 
+}
+.btn-submit {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif; 
+    font-weight: lighter; 
+    font-size: 16px; 
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Пристрої */
+@media print {
+    @page {
+        size: auto; 
+        marks: none; 
+    }
+    .form-section {
+        page-break-inside: avoid; 
+        page-break-before: always; 
+    }
+    p, div {
+        widows: 3; 
+        orphans: 3; 
+    }
+}
+
+/* Звук */
+.speech-css {
+    volume: 50%; 
+    cue-after: url("ding.wav"); 
+    cue-before: url("pop.wav"); 
+    pause-after: 500ms; 
+    play-during: url("background.wav") mix repeat; 
+    azimuth: behind; 
+    elevation: higher; 
+    speech-rate: slower; 
+    richness: 50; 
+    stress: 50; 
+    voice-family: "Male", "Female"; 
+    speak: spell-out; 
+    speak-numeral: digits; 
+}
+
+/* Кнопки */
+.btn-fast {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-stretch: ultra-condensed; 
+}
+.btn-reset {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font: menu; 
+}
