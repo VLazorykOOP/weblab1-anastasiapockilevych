@@ -1,121 +1,150 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ua">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVG Графіка</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        .svg-container {
+        body {
+            font-family: Arial, sans-serif;
             text-align: center;
-            margin: 20px auto;
+            background-color: #f0f0f0;
+        }
+        svg {
             border: 1px solid #ccc;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            padding: 20px;
-            max-width: 800px;
+            margin-top: 20px;
+            background-color: white; 
         }
-        
-        h3 {
-            text-align: center;
-            color: #003366;
+        h1 {
+            color: #333;
         }
-
-        .legend {
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 10px;
-            text-align: left;
-            display: inline-block;
-        }
-        .legend li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
-    <div id="page-wrapper">
-        <header>
-            <h1 id="main-title">Робота з SVG графікою</h1>
-        </header>
+<h1>Заокруглений нижній прямокутник</h1>
 
-        <main>
-            
-            <section class="svg-container">
-                <h3>Синій Робот</h3>
-                <p>Масштаб: 1 од. = 50px. Вісь Y інвертована для SVG.</p>
+<svg width="800" height="600" viewBox="-4 -4 10 8" xmlns="http://www.w3.org/2000/svg">
 
-                <svg width="100%" height="500" viewBox="0 0 600 550" xmlns="http://www.w3.org/2000/svg">
-                    
-                    <defs>
-                        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="lightgray" stroke-width="1"/>
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" />
-                    
-                    <line x1="50" y1="250" x2="550" y2="250" stroke="black" stroke-width="3" marker-end="url(#arrow)" /> 
-                    <line x1="150" y1="500" x2="150" y2="50" stroke="black" stroke-width="3" marker-end="url(#arrow)" /> 
-                    <text x="540" y="280" font-size="20">X</text>
-                    <text x="120" y="60" font-size="20">Y</text>
+<rect x="-4" y="-4" width="10" height="8" fill="white" />
 
-                    <ellipse cx="300" cy="175" rx="120" ry="70" fill="blue" stroke="black" stroke-width="2">
-                        <animate attributeName="rx" values="120;130;120" dur="2s" repeatCount="indefinite" />
-                        <animate attributeName="ry" values="70;75;70" dur="2s" repeatCount="indefinite" />
-                    </ellipse>
+<defs>
+    <path id="curve-path" d="M -1 -2.5 Q 3 -5 7 -2.5" />
+</defs>
 
-                    <circle cx="250" cy="100" r="25" fill="blue" stroke="black" stroke-width="2">
-                        <animate attributeName="fill" values="blue;red;yellow;blue" dur="4s" repeatCount="indefinite" />
-                    </circle>
+<text fill="purple" font-family="Verdana" font-size="0.5" font-weight="bold">
+    <textPath href="#curve-path" startOffset="10%">
+        Привіт, Робот! (offset 10%)
+    </textPath>
+</text>
 
-                    <circle cx="350" cy="100" r="25" fill="blue" stroke="black" stroke-width="2">
-                        <animate attributeName="cy" values="100;80;100" dur="1s" repeatCount="indefinite" />
-                    </circle>
 
-                    <rect x="150" y="150" width="50" height="50" fill="blue" stroke="black" stroke-width="2">
-                        <animateTransform attributeName="transform" type="rotate" from="0 175 175" to="360 175 175" dur="3s" repeatCount="indefinite" />
-                    </rect>
+<g transform="scale(1, -1)">
 
-                    <rect x="400" y="150" width="50" height="50" fill="blue" stroke="black" stroke-width="2" />
+    <circle cx="1.5" cy="2.5" r="0.5" stroke='black' stroke-width='0.04' fill="blue">
+        <animate 
+            attributeName="fill"
+            values="blue; red; blue"
+            keyTimes="0; 0.5; 1"
+            dur="3s"
+            repeatCount="indefinite"/>
+    </circle>
+    <circle cx="4.5" cy="2.5" r="0.5" stroke='black' stroke-width='0.04' fill="blue">
+        <animate 
+            attributeName="fill"
+            values="blue; red; blue"
+            keyTimes="0; 0.5; 1"
+            dur="3s"
+            repeatCount="indefinite"/>
+    </circle>
 
-                    <rect x="200" y="250" width="200" height="50" rx="25" ry="25" fill="blue" stroke="black" stroke-width="2" />
+    <rect x="0" y="1" width="1" height="1" stroke='black' stroke-width='0.04' fill="blue">
+        <animateTransform 
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 0.5 1.5"
+            to="360 0.5 1.5"
+            dur="4s"
+            repeatCount="indefinite"/>
+    </rect>
+    <rect x="5" y="1" width="1" height="1" stroke='black' stroke-width='0.04' fill="blue">
+        <animateTransform 
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 5.5 1.5"
+            to="-360 5.5 1.5"
+            dur="4s"
+            repeatCount="indefinite"/>
+    </rect>
 
-                    <rect x="200" y="300" width="50" height="50" fill="blue" stroke="black" stroke-width="2" />
+    <ellipse id="arc-path" cx="3" cy="1" rx="2" ry="1" stroke='black' stroke-width='0.04' fill="blue">
+        <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="translate"
+            from="0 0"
+            to="0 0.5" 
+            dur="2s"
+            additive="sum"
+            repeatCount="indefinite"
+            keyTimes="0; 0.5; 1"
+            values="0 0; 0 0.5; 0 0"/>
+    </ellipse>
 
-                    <rect x="350" y="300" width="50" height="50" fill="blue" stroke="black" stroke-width="2">
-                        <animateTransform attributeName="transform" type="skewX" values="0;20;0;-20;0" dur="2s" repeatCount="indefinite" />
-                    </rect>
+    <rect x="1" y="-2" width="1" height="1" stroke='black' stroke-width='0.04' fill="blue">
+        <animate 
+            attributeName="height"
+            values="1; 1.5; 1"
+            keyTimes="0; 0.5; 1"
+            dur="2s"
+            repeatCount="indefinite"/>
+        <animate 
+            attributeName="y"
+            values="-2; -2.5; -2"
+            keyTimes="0; 0.5; 1"
+            dur="2s"
+            repeatCount="indefinite"/>
+    </rect>
 
-                    <path id="textCurve" d="M 100 450 Q 300 350 500 450" fill="transparent" stroke="none"/>
-                    <text font-family="Verdana" font-size="25" fill="#003366">
-                        <textPath href="#textCurve" startOffset="50%" text-anchor="middle">
-                            0_o
-                        </textPath>
-                    </text>
+    <rect x="4" y="-2" width="1" height="1" stroke='black' stroke-width='0.04' fill="blue">
+        <animate 
+            attributeName="height"
+            values="1; 1.5; 1"
+            keyTimes="0; 0.5; 1"
+            dur="2s"
+            repeatCount="indefinite"/>
+        <animate 
+            attributeName="y"
+            values="-2; -2.5; -2"
+            keyTimes="0; 0.5; 1"
+            dur="2s"
+            repeatCount="indefinite"/>
+    </rect>
 
-                </svg>
+    <rect x="2" y="-1" width="2" height="1" rx="0.3" ry="0.3" stroke='black' stroke-width='0.04' fill="blue"/>
 
-                <div class="legend">
-                    <strong>Легенда анімацій:</strong>
-                    <ul>
-                        <li>🔴 <strong>Колір:</strong> Ліве око (змінює колір)</li>
-                        <li>↕️ <strong>Переміщення:</strong> Праве око (стрибає)</li>
-                        <li>🔄 <strong>Обертання:</strong> Ліва рука (крутиться)</li>
-                        <li>🔍 <strong>Розмір:</strong> Тулуб (пульсує)</li>
-                        <li>📐 <strong>Викривлення:</strong> Права нога (хитається)</li>
-                    </ul>
-                </div>
+    <g stroke="black" stroke-width="0.05">
+    <line x1="-3.5" y1="0" x2="5.5" y2="0" />
+    <polyline points="5.5,0 5.3,-0.1 5.5,0 5.3,0.1" stroke-linejoin="round" stroke-linecap="round" />
+    <line x1="0" y1="-3.5" x2="0" y2="3" />
+    <polyline points="0,3 -0.1,2.8 0,3 0.1,2.8" stroke-linejoin="round" stroke-linecap="round" />
 
-            </section>
-        </main>
+    <line x1="-3" y1="-0.1" x2="-3" y2="0.1" />
+    <line x1="-2" y1="-0.1" x2="-2" y2="0.1" />
+    <line x1="-1" y1="-0.1" x2="-1" y2="0.1" />
+    <line x1="1" y1="-0.1" x2="1" y2="0.1" />
+    <line x1="2" y1="-0.1" x2="2" y2="0.1" />
+    <line x1="3" y1="-0.1" x2="3" y2="0.1" />
+    <line x1="4" y1="-0.1" x2="4" y2="0.1" />
+    <line x1="5" y1="-0.1" x2="5" y2="0.1" />
+    <line x1="-0.1" y1="-3" x2="0.1" y2="-3" />
+    <line x1="-0.1" y1="-2" x2="0.1" y2="-2" />
+    <line x1="-0.1" y1="-1" x2="0.1" y2="-1" />
+    <line x1="-0.1" y1="1" x2="0.1" y2="1" />
+    <line x1="-0.1" y1="2" x2="0.1" y2="2" />
+    </g>
+</g>
 
-        <footer>
-            <a href="menu.html" class="nav-link">Меню</a>
-            <a href="index.html" class="nav-link">Головна</a>
-            <a href="page5.html" class="nav-link">Стор 5</a>
-            <a href="page6.html" class="nav-link">Стор 6</a>
-        </footer>
-    </div>
-
+</svg>
 </body>
 </html>
