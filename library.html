@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медіа-бібліотека FrostBrew</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .media-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        .nav-form {
+            background: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .nav-input {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .nav-input:hover {
+            background-color: #d35400;
+        }
+
+        figure {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #fff;
+        }
+
+        figcaption {
+            font-weight: bold;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        iframe, object, embed {
+            border: 2px solid #333;
+        }
+        
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="page-wrapper">
+        <header>
+            <h1 id="main-title">Медіа-бібліотека</h1>
+        </header>
+
+        <nav>
+            <form name="navMenu" class="nav-form">
+                <input type="button" class="nav-input" value="Головна (Таблиця)" onclick="window.location.href='index.html'">
+                <input type="button" class="nav-input" value="Аудіо (The Weeknd)" onclick="document.getElementById('audio-sec').scrollIntoView();">
+                <input type="button" class="nav-input" value="Відео (Stranger Things)" onclick="document.getElementById('video-sec').scrollIntoView();">
+                <input type="button" class="nav-input" value="Документація (PDF)" onclick="document.getElementById('doc-sec').scrollIntoView();">
+                <input type="button" class="nav-input" value="YouTube" onclick="document.getElementById('frame-sec').scrollIntoView();">
+            </form>
+        </nav>
+
+        <main class="media-container">
+            
+            <section id="audio-sec">
+                <h2>🎧 Аудіо матеріали</h2>
+                <p>Улюблена музика.</p>
+                
+                <figure>
+                    <audio controls>
+                        <source src="audio/meeting_rec.mp3" type="audio/mpeg">
+                        Ваш браузер не підтримує елемент audio.
+                    </audio>
+                    <figcaption>The Weeknd - Starboy</figcaption>
+                </figure>
+            </section>
+
+            <section id="video-sec">
+                <h2>🎬 Відео з файлу</h2>
+                
+                <figure>
+                    <video width="500" controls poster="images/poster.jpg">
+                        <source src="video/report_q3.mp4" type="video/mp4">
+                        Ваш браузер не підтримує тег video.
+                    </video>
+                    <figcaption>Тізер "Дивні дива" (Локальний файл)</figcaption>
+                </figure>
+            </section>
+
+            <section id="doc-sec">
+                <h2>📄 Вбудовані об'єкти</h2>
+                
+                <h3>Документація PDF</h3>
+                <object data="docs/report.pdf" type="application/pdf" width="100%" height="500px">
+                    <param name="view" value="FitH">
+                    <param name="page" value="1">
+                    <p style="padding: 20px; border: 1px solid red;">
+                        Ваш браузер не підтримує перегляд PDF. 
+                        <a href="docs/report.pdf" download>Завантажте файл тут</a>.
+                    </p>
+                </object>
+
+                <br><br>
+
+                <h3>Анімація (Embed)</h3>
+                <embed src="images/chart_animation.gif" width="300" height="200" type="image/gif">
+                <noembed>Ваш браузер не підтримує вбудовані об'єкти.</noembed>
+            </section>
+
+            <section id="frame-sec">
+                <h2>🌐 YouTube (Iframe)</h2>
+                <p>Офіційний трейлер Stranger Things (Netflix):</p>
+                
+                <iframe width="560" height="315" 
+                    src="https://www.youtube.com/embed/yQEondeGvKo" 
+                    title="Stranger Things 4 | Official Trailer" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>© 2023 FrostBrew Media Library. Анастасія Похілевич.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
