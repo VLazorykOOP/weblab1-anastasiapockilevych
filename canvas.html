@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Анімація: Робот</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .canvas-container {
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            background-color: white;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.stop {
+            background-color: #f44336;
+        }
+        button.stop:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Лабораторна робота: Canvas Анімація</h1>
+    <p>Натисніть кнопку, щоб запустити/зупинити трансформацію фігур</p>
+
+    <div class="canvas-container">
+        <canvas id="myCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <div class="controls">
+        <button id="animBtn">Запустити анімацію</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const btn = document.getElementById('animBtn');
+
+        // Зменшуємо масштаб та центруємо, щоб все вмістилось
+        const SCALE = 50; 
+        const ORIGIN_X = 300; 
+        const ORIGIN_Y = 350; // Трохи опустимо центр, щоб було гарно
+
+        let isAnimating = false;
+        let animationId;
+        let startTime = null;
+
+        function toScreen(x, y) {
+            return {
+                x: ORIGIN_X + x * SCALE,
+                y: ORIGIN_Y - y * SCALE
+            };
+        }
+
+        // --- Малювання фону (Сітка) ---
+        function drawGrid() {
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#eee"; // Світліша сітка, щоб не заважала
+
+            for (let x = -6; x <= 12; x++) {
+                let p1 = toScreen(x, -6);
+                let p2 = toScreen(x, 6);
+                ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+            }
+            for (let y = -6; y <= 6; y++) {
+                let p1 = toScreen(-6, y);
+                let p2 = toScreen(12, y);
+                ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+            }
+        }
+
+        // --- Малювання Осей координат (Варіант) ---
+        function drawVariantAxes() {
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+
+            // 1. Горизонтальна вісь (Line x1="-3.5" y1="0" x2="5.5" y2="0")
+            const xAxisStart = toScreen(-3.5, 0);
+            const xAxisEnd = toScreen(5.5, 0);
+            ctx.beginPath();
+            ctx.moveTo(xAxisStart.x, xAxisStart.y);
+            ctx.lineTo(xAxisEnd.x, xAxisEnd.y);
+            ctx.stroke();
+
+            // Стрілка X (Polyline points="5.5,0 5.3,-0.1 5.5,0 5.3,0.1")
+            const arrowX = [
+                toScreen(5.5, 0),
+                toScreen(5.3, -0.1),
+                toScreen(5.5, 0),
+                toScreen(5.3, 0.1)
+            ];
+            ctx.beginPath();
+            ctx.moveTo(arrowX[0].x, arrowX[0].y);
+            ctx.lineTo(arrowX[1].x, arrowX[1].y);
+            ctx.moveTo(arrowX[2].x, arrowX[2].y);
+            ctx.lineTo(arrowX[3].x, arrowX[3].y);
+            ctx.stroke();
+
+            // 2. Вертикальна вісь (Line x1="0" y1="-3.5" x2="0" y2="3")
+            const yAxisStart = toScreen(0, -3.5);
+            const yAxisEnd = toScreen(0, 3);
+            ctx.beginPath();
+            ctx.moveTo(yAxisStart.x, yAxisStart.y);
+            ctx.lineTo(yAxisEnd.x, yAxisEnd.y);
+            ctx.stroke();
+
+            // Стрілка Y (Polyline points="0,3 -0.1,2.8 0,3 0.1,2.8")
+            const arrowY = [
+                toScreen(0, 3),
+                toScreen(-0.1, 2.8),
+                toScreen(0, 3),
+                toScreen(0.1, 2.8)
+            ];
+            ctx.beginPath();
+            ctx.moveTo(arrowY[0].x, arrowY[0].y);
+            ctx.lineTo(arrowY[1].x, arrowY[1].y);
+            ctx.moveTo(arrowY[2].x, arrowY[2].y);
+            ctx.lineTo(arrowY[3].x, arrowY[3].y);
+            ctx.stroke();
+
+            // 3. Засічки на осі X (Ticks)
+            const xTicks = [-3, -2, -1, 1, 2, 3, 4, 5];
+            xTicks.forEach(x => {
+                let top = toScreen(x, 0.1);
+                let bot = toScreen(x, -0.1);
+                ctx.beginPath();
+                ctx.moveTo(top.x, top.y);
+                ctx.lineTo(bot.x, bot.y);
+                ctx.stroke();
+            });
+
+            // 4. Засічки на осі Y (Ticks)
+            const yTicks = [-3, -2, -1, 1, 2];
+            yTicks.forEach(y => {
+                let left = toScreen(-0.1, y);
+                let right = toScreen(0.1, y);
+                ctx.beginPath();
+                ctx.moveTo(left.x, left.y);
+                ctx.lineTo(right.x, right.y);
+                ctx.stroke();
+            });
+        }
+
+        // --- Головна функція малювання Робота ---
+        function drawScene(timestamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            drawGrid();
+            drawVariantAxes(); 
+
+            const time = timestamp / 1000;
+
+            ctx.fillStyle = "blue";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 3;
+
+            // 1. ГОЛОВА (Ellipse)
+            let headY = 1;
+            if (isAnimating) {
+                headY += Math.sin(time * 3) * 0.5; 
+            }
+            const headCenter = toScreen(3, headY);
+            ctx.beginPath();
+            ctx.ellipse(headCenter.x, headCenter.y, 2 * SCALE, 1 * SCALE, 0, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+            // 2. ОЧІ
+            let eyeColor = "blue";
+            if (isAnimating) {
+                const colorVal = Math.floor(Math.abs(Math.sin(time * 2)) * 255);
+                eyeColor = `rgb(${colorVal}, 0, ${255 - colorVal})`;
+            }
+
+            const leftEye = toScreen(1.5, headY + 1.5);
+            ctx.fillStyle = eyeColor;
+            ctx.beginPath();
+            ctx.arc(leftEye.x, leftEye.y, 0.5 * SCALE, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+            const rightEye = toScreen(4.5, headY + 1.5);
+            ctx.beginPath();
+            ctx.arc(rightEye.x, rightEye.y, 0.5 * SCALE, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = "blue";
+
+            // 3. ВУХА
+            drawRotatingRect(0, 1, 1, 1, isAnimating ? time * 2 : 0);
+            drawRotatingRect(5, 1, 1, 1, isAnimating ? -time * 2 : 0);
+
+            // 4. ТІЛО (Заміна roundRect на універсальний шлях для сумісності)
+            // ВИПРАВЛЕНО: піднято тулуб на 1 одиницю (було -1, стало 0)
+            const svgBodyX = 2;
+            const svgBodyY = 0; 
+            const bodyScreen = toScreen(svgBodyX, svgBodyY);
+            const bW = 2 * SCALE;
+            const bH = 1 * SCALE;
+            const bR = 0.3 * SCALE;
+
+            ctx.beginPath();
+            // Малюємо заокруглений прямокутник вручну (moveTo + arcTo)
+            ctx.moveTo(bodyScreen.x + bR, bodyScreen.y);
+            ctx.lineTo(bodyScreen.x + bW - bR, bodyScreen.y);
+            ctx.quadraticCurveTo(bodyScreen.x + bW, bodyScreen.y, bodyScreen.x + bW, bodyScreen.y + bR); // Правий верхній (у Canvas Y вниз)
+            ctx.lineTo(bodyScreen.x + bW, bodyScreen.y + bH - bR);
+            ctx.quadraticCurveTo(bodyScreen.x + bW, bodyScreen.y + bH, bodyScreen.x + bW - bR, bodyScreen.y + bH); // Правий нижній
+            ctx.lineTo(bodyScreen.x + bR, bodyScreen.y + bH);
+            ctx.quadraticCurveTo(bodyScreen.x, bodyScreen.y + bH, bodyScreen.x, bodyScreen.y + bH - bR); // Лівий нижній
+            ctx.lineTo(bodyScreen.x, bodyScreen.y + bR);
+            ctx.quadraticCurveTo(bodyScreen.x, bodyScreen.y, bodyScreen.x + bR, bodyScreen.y); // Лівий верхній
+            
+            ctx.fill();
+            ctx.stroke();
+
+            // 5. НОГИ
+            let legHeight = 1;
+            // ВИПРАВЛЕНО: піднято ноги на 1 одиницю (було -2, стало -1)
+            let currentLegY = -1; // Початкова позиція
+            
+            if (isAnimating) {
+                // Анімація розтягування та зміщення вниз
+                const stretch = Math.abs(Math.sin(time * 3)) * 0.5;
+                legHeight = 1 + stretch;
+                currentLegY = -1 - stretch; 
+            }
+
+            // Ліва нога
+            const lLeg = toScreen(1, currentLegY); 
+            ctx.beginPath();
+            // Важливо: малюємо прямокутник висотою вниз
+            ctx.rect(lLeg.x, lLeg.y, 1 * SCALE, legHeight * SCALE); 
+            ctx.fill();
+            ctx.stroke();
+
+            // Права нога
+            const rLeg = toScreen(4, currentLegY);
+            ctx.beginPath();
+            ctx.rect(rLeg.x, rLeg.y, 1 * SCALE, legHeight * SCALE);
+            ctx.fill();
+            ctx.stroke();
+            
+            // 6. ТЕКСТ
+            ctx.font = "bold 24px Verdana";
+            ctx.fillStyle = "purple";
+            ctx.fillText("Привіт, Робот!", ORIGIN_X + 1 * SCALE, ORIGIN_Y - 3 * SCALE);
+        }
+
+        function drawRotatingRect(logicalX, logicalY, w, h, angle) {
+            const pos = toScreen(logicalX, logicalY);
+            const width = w * SCALE;
+            const height = h * SCALE; 
+            ctx.save();
+            ctx.translate(pos.x + width / 2, pos.y + height / 2);
+            ctx.rotate(angle);
+            ctx.fillStyle = "blue";
+            ctx.strokeStyle = "black";
+            ctx.beginPath();
+            ctx.rect(-width / 2, -height / 2, width, height);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function loop(timestamp) {
+            if (!startTime) startTime = timestamp;
+            drawScene(timestamp);
+            if (isAnimating) {
+                animationId = requestAnimationFrame(loop);
+            }
+        }
+
+        btn.addEventListener('click', () => {
+            isAnimating = !isAnimating;
+            if (isAnimating) {
+                btn.textContent = "Зупинити анімацію";
+                btn.classList.add('stop');
+                requestAnimationFrame(loop);
+            } else {
+                btn.textContent = "Запустити анімацію";
+                btn.classList.remove('stop');
+                cancelAnimationFrame(animationId);
+            }
+        });
+
+        requestAnimationFrame((ts) => {
+            drawScene(ts);
+        });
+
+    </script>
+</body>
+</html>
